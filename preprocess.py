@@ -16,8 +16,13 @@ def get_train_data():
     data = convert_to_LAB()
     l_images = data[:, :, :, 0]
     ab_images = data[:, :, :, 1:]
+
+    np.save('l_images', l_images)
+    np.save('ab_images', ab_images)
     labels = get_labels(ab_images)
+
     return l_images, ab_images, labels
+
 
 
 def get_labels(ab_img):
@@ -41,7 +46,7 @@ def walk_data2():
                 all_files.append(join(root, file))
                 copyfile(join(root, file), join("preprocessed/", file))
 
-    print(all_files)
+    # print(all_files)
     return all_files
 
 def walk_data():
@@ -84,4 +89,4 @@ def convert_to_LAB():
     lab = np.asarray(lab)
     return lab
 
-print(convert_to_LAB().shape)
+# print(convert_to_LAB().shape)
